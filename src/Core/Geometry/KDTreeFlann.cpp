@@ -207,6 +207,19 @@ bool KDTreeFlann::SetRawData(const Eigen::Map<const Eigen::MatrixXd> &data)
 	return true;
 }
 
+template int KDTreeFlann::Search<Eigen::Vector2d>(const Eigen::Vector2d &query,
+		const three::KDTreeSearchParam &param, std::vector<int> &indices,
+		std::vector<double> &distance2) const;
+template int KDTreeFlann::SearchKNN<Eigen::Vector2d>(
+		const Eigen::Vector2d &query, int knn, std::vector<int> &indices,
+		std::vector<double> &distance2) const;
+template int KDTreeFlann::SearchRadius<Eigen::Vector2d>(
+		const Eigen::Vector2d &query, double radius, std::vector<int> &indices,
+		std::vector<double> &distance2) const;
+template int KDTreeFlann::SearchHybrid<Eigen::Vector2d>(
+		const Eigen::Vector2d &query, double radius, int max_nn,
+		std::vector<int> &indices, std::vector<double> &distance2) const;
+
 template int KDTreeFlann::Search<Eigen::Vector3d>(const Eigen::Vector3d &query,
 		const three::KDTreeSearchParam &param, std::vector<int> &indices,
 		std::vector<double> &distance2) const;

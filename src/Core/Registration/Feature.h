@@ -50,4 +50,37 @@ public:
 std::shared_ptr<Feature> ComputeFPFHFeature(const PointCloud &input,
 		const KDTreeSearchParam &search_param = KDTreeSearchParamKNN());
 
+
+enum DepthDensifyMethod { depth_densify_nearest_neighbor,
+		depth_densify_gaussian_kernel };
+class PlanarParameterizationOption
+{
+public:
+	PlanarParameterizationOption(double sigma = 0.1,
+			int number_of_neighbors = 3, int half_patch_size_ = 5,
+			DepthDensifyMethod depth_densify_method = depth_densify_gaussian_kernel):
+			sigma_(sigma), number_of_neighbors_(number_of_neighbors),
+			half_patch_size_(half_patch_size_),
+			depth_densify_method_(depth_densify_method) {}
+
+public:
+	double sigma_;
+	int number_of_neighbors_;
+	int half_patch_size_; // patch_size = patch_half_size_ * 2 + 1
+	DepthDensifyMethod depth_densify_method_;
+};
+
+class PlanarParameterizationOutput
+{
+public:
+	Feature depth_;
+	std::vector<Feature> weight_;
+	std::vector<Eigen::MatrixXi> index_;
+};
+
+std::shared_ptr<PlanarParameterizationOutput> PlanarParameterization(
+		const PointCloud &cloud,
+		const KDTreeSearchParamHybrid &search_param,
+		const PlanarParameterizationOption &option);
+
 }	// namespace three
