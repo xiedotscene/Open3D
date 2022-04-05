@@ -38,3 +38,6 @@ Please cite our work if you use Open3D.
 * Code: [github.com/IntelVCL/Open3D](https://github.com/IntelVCL/Open3D)
 * Document: [www.open3d.org/docs](http://www.open3d.org/docs)
 * License: [The MIT license](https://opensource.org/licenses/MIT)
+
+## Remark
+* Add `Test` and `Helper` directories under `src/Python` to avoid compile error
